@@ -17,8 +17,6 @@ public class MainMenu {
         System.out.println("Choose user type:");
         System.out.println("1. Employee");
         System.out.println("2. Client");
-        System.out.println("3. Sort by name");
-        System.out.println("4. Sort by salary");
 
     }
 
