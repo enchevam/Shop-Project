@@ -1,17 +1,18 @@
 package auth;
 
+import employee.EmployeeOperation;
+import menus.SystemMenu;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-import static menus.LogInMenu.showLogInMenu;
+import static menus.SystemMenu.showSystemMenu;
 
 public class Authentication {
 
     public static boolean authenticate(Statement statement, Scanner sc, int id, String userName) {
-
-       // showLogInMenu(sc, statement);
 
         ResultSet rs;
         String query = "SELECT id, first_name FROM employee WHERE id='"
@@ -20,7 +21,7 @@ public class Authentication {
         try {
             rs = statement.executeQuery(query);
             if (rs.next()) {
-                System.out.println("Welcome::: " + userName);
+                showSystemMenu(sc,statement);
             }
             else {
                 System.out.println("Invalid first name or id");

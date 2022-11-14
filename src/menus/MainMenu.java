@@ -1,8 +1,14 @@
 package menus;
 
+import employee.Employee;
+
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import static employee.EmployeeOperation.sortEmployeesBySalary;
 import static menus.LogInMenu.showLogInMenu;
+import static employee.EmployeeOperation.sortEmployeesByName;
 
 public class MainMenu {
 
@@ -11,6 +17,8 @@ public class MainMenu {
         System.out.println("Choose user type:");
         System.out.println("1. Employee");
         System.out.println("2. Client");
+        System.out.println("3. Sort by name");
+        System.out.println("4. Sort by salary");
 
     }
 
@@ -35,4 +43,5 @@ public class MainMenu {
             }
         } while (true);
     }
+
 }
