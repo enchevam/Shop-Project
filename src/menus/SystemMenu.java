@@ -1,17 +1,17 @@
 package menus;
 
-import Products.Product;
 import employee.Employee;
 import employee.EmployeeOperation;
+import products.Product;
 
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static Products.ProductOperations.*;
 import static employee.EmployeeOperation.sortEmployeesByName;
 import static employee.EmployeeOperation.sortEmployeesBySalary;
 import static menus.LogInMenu.showLogInMenu;
+import static products.ProductOperations.*;
 
 public class SystemMenu {
 
@@ -51,11 +51,11 @@ public class SystemMenu {
                 }
                 case 2 -> {
                     System.out.println("Client");
-                        ArrayList<Product> products =printAllProducts(statement);
-                        for (Product e: products){
-                            System.out.println(e);
-                        }
-                        System.exit(0);
+                    ArrayList<Product> products =printAllProducts(statement);
+                    for (Product e: products){
+                        System.out.println(e);
+                    }
+                    System.exit(0);
                 }
                 case 3 -> {
                     ArrayList<Product> products =sortProductsByName(statement);
@@ -66,34 +66,6 @@ public class SystemMenu {
                 }
                 case 4 -> {
                     ArrayList<Product> products =sortProductsByPrice(statement);
-                    for (Product e: products){
-                        System.out.println(e);
-                    }
-                    System.exit(0);
-                }
-                case 8 -> {
-                    ArrayList<Product> products =sortProductByPriceHigherOrEqualToInput(statement);
-                    for (Product e: products){
-                        System.out.println(e);
-                    }
-                    System.exit(0);
-                }
-                case 9 -> {
-                    ArrayList<Product> products =sortProductByPriceLowerOrEqualToInput(statement);
-                    for (Product e: products){
-                        System.out.println(e);
-                    }
-                    System.exit(0);
-                }
-                case 10 ->{
-                    ArrayList<Product> products =sortProductByQuantityHigherOrEqualToInput(statement);
-                    for (Product e: products){
-                        System.out.println(e);
-                    }
-                    System.exit(0);
-                }
-                case 11 ->{
-                    ArrayList<Product> products =sortProductByQuantityLowerOrEqualToInput(statement);
                     for (Product e: products){
                         System.out.println(e);
                     }
