@@ -185,11 +185,36 @@ public class ProductOperations {
 
         return productsList;
     }
-    public static ArrayList<Product> ChangeNameOfProductById(Statement statement) {
+    public static ArrayList<Product> printProductWhereIdEqualsInput(Statement statement) {
         ResultSet rs;
         int input=scan.nextInt();
         ArrayList<Product> productsList = new ArrayList<>();
-        String query = "SELECT * FROM products where productId ="+input;
+        String query = "SELECT * FROM products where id ="+input;
+        try {
+            rs = statement.executeQuery(query);
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String name = rs.getString(2);
+                double price = rs.getDouble(3);
+                int quantity = rs.getInt(4);
+                String type = rs.getString(5);
+                String color = rs.getString(6);
+                String expiration_date =rs.getString(7);
+                Product item = new Product(id,name,price,quantity,type,color,expiration_date);
+                productsList.add(item);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return productsList;
+    }
+    public static ArrayList<Product> printProductWhereNameEqualsInput(Statement statement) {
+        ResultSet rs;
+        String input=scan.next();
+        ArrayList<Product> productsList = new ArrayList<>();
+        String query = "SELECT * FROM products where name like '"+input+"'";
         try {
             rs = statement.executeQuery(query);
             while (rs.next()) {
@@ -212,7 +237,5 @@ public class ProductOperations {
     }
 }
 
-
-//13. Change the price of a product (by id)");
-//        System.out.println("14. Change the quantity of a product (by id)");
-//        System.out.println("15. Change the name of a product (by id)");
+//. Print product by ID");
+//      PRint product by name

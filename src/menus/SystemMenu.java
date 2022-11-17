@@ -72,6 +72,20 @@ public class SystemMenu {
                     }
                     System.exit(0);
                 }
+                case 6 -> {
+                    ArrayList<Product> products = printProductWhereIdEqualsInput(statement);
+                    for (Product e : products) {
+                        System.out.println(e);
+                    }
+                    System.exit(0);
+                }
+                case 7 -> {
+                    ArrayList<Product> products = printProductWhereNameEqualsInput(statement);
+                    for (Product e : products) {
+                        System.out.println(e);
+                    }
+                    System.exit(0);
+                }
                 case 8 -> {
                     ArrayList<Product> products = sortProductByPriceHigherOrEqualToInput(statement);
                     for (Product e : products) {
