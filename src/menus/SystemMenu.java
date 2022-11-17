@@ -126,7 +126,6 @@ public class SystemMenu {
                 default -> System.out.println("Invalid choice! Try again!\n");
             }
 
-
         } while (true);
     }
 }
