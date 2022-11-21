@@ -1,23 +1,21 @@
 package menus;
 
 import employee.Employee;
-import employee.EmployeeOperation;
 import products.Product;
 
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static employee.EmployeeOperation.sortEmployeesByName;
-import static employee.EmployeeOperation.sortEmployeesBySalary;
-import static menus.LogInMenu.showLogInMenu;
-import static products.ProductOperations.*;
+import static employee.EmployeeActions.sortEmployeesByName;
+import static employee.EmployeeActions.sortEmployeesBySalary;
+import static products.ProductActions.*;
 
-public class SystemMenu {
+public class EmployeeMenu {
 
-    public static void printSystemMenu(){
+    public static void printEmployeeMenu() {
 
-        System.out.println("Choose user type:");
+        System.out.println("Choose employee action:");
         System.out.println("1. Add product");
         System.out.println("2. Print all products");
         System.out.println("3. Print all products sorted by name");
@@ -37,36 +35,35 @@ public class SystemMenu {
         System.out.println("17. Sort employees by salary");
     }
 
-    public static void showSystemMenu(Scanner sc, Statement statement){
+    public static void showEmployeeMenu(Scanner sc, Statement statement) {
         int choice;
 
         do {
-            printSystemMenu();
+            printEmployeeMenu();
             choice = sc.nextInt();
 
             switch (choice) {
                 case 1 -> {
-                   // showLogInMenu(sc, statement);
+
                     System.exit(0);
                 }
                 case 2 -> {
-                    System.out.println("Client");
-                    ArrayList<Product> products =printAllProducts(statement);
-                    for (Product e: products){
+                    ArrayList<Product> products = printAllProducts(statement);
+                    for (Product e : products) {
                         System.out.println(e);
                     }
                     System.exit(0);
                 }
                 case 3 -> {
-                    ArrayList<Product> products =sortProductsByName(statement);
-                    for (Product e: products){
+                    ArrayList<Product> products = sortProductsByName(statement);
+                    for (Product e : products) {
                         System.out.println(e);
                     }
                     System.exit(0);
                 }
                 case 4 -> {
-                    ArrayList<Product> products =sortProductsByPrice(statement);
-                    for (Product e: products){
+                    ArrayList<Product> products = sortProductsByPrice(statement);
+                    for (Product e : products) {
                         System.out.println(e);
                     }
                     System.exit(0);
@@ -78,14 +75,14 @@ public class SystemMenu {
                     }
                     System.exit(0);
                 }
-                case 17 ->{
+                case 17 -> {
                     ArrayList<Employee> employees = sortEmployeesBySalary(statement);
                     for (Employee e : employees) {
                         System.out.println(e);
                     }
                     System.exit(0);
                 }
-                default -> System.out.println("Invalid choice! Try again!\n");
+                default -> System.out.println("Invalid action! Try again!\n");
             }
         } while (true);
     }
