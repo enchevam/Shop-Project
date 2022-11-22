@@ -4,6 +4,7 @@ import Products.Product;
 import employee.Employee;
 
 
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -37,7 +38,7 @@ public class SystemMenu {
         System.out.println("17. Sort employees by salary");
     }
 
-    public static void showSystemMenu(Scanner sc, Statement statement) {
+    public static void showSystemMenu(Scanner sc, Statement statement) throws SQLException {
         int choice;
 
         do {
@@ -46,12 +47,11 @@ public class SystemMenu {
 
             switch (choice) {
                 case 1 -> {
-                    // showLogInMenu(sc, statement);
+                    int products =createProduct(statement);
+                    System.out.println("Product was created successfully");
                     System.exit(0);
                 }
                 case 2 -> {
-                    System.out.println("Client");
-
                     ArrayList<Product> products = printAllProducts(statement);
                     for (Product e : products) {
                         System.out.println(e);
@@ -72,6 +72,14 @@ public class SystemMenu {
                     }
                     System.exit(0);
                 }
+                case 5 -> {
+                    ArrayList<Product> products = sortProductsByExpiration_Date(statement);
+                    for (Product e : products) {
+                        System.out.println(e);
+                    }
+                    System.exit(0);
+                }
+
                 case 6 -> {
                     ArrayList<Product> products = printProductWhereIdEqualsInput(statement);
                     for (Product e : products) {
@@ -119,6 +127,27 @@ public class SystemMenu {
                     }
                     System.exit(0);
                 }
+                case 12 -> {
+                    int products = deleteProductWhereIdEqualsInput(statement);
+                        System.out.println("Product was deleted successfully");
+                    System.exit(0);
+                }
+                case 13 -> {
+                    int products = changeProductPriceWhereIdEqualsInput(statement);
+                    System.out.println("The price was changed successfully!");
+                    System.exit(0);
+                }
+                case 14 -> {
+                    int products = changeProductQuantityWhereIdEqualsInput(statement);
+                    System.out.println("The quantity was changed successfully!");
+                    System.exit(0);
+                }
+                case 15 -> {
+                    int products = changeProductNameWhereIdEqualsInput(statement);
+                    System.out.println("The Name was changed successfully!");
+                    System.exit(0);
+                }
+
                 case 16 -> {
 
                     ArrayList<Employee> employees = sortEmployeesByName(statement);

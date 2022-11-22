@@ -11,18 +11,20 @@ public class LogInMenu {
 
         int id;
         String userName;
+ try {
+     do {
 
-        do {
-
-            System.out.println("Enter your id: ");
-            id = sc.nextInt();
-            sc.nextLine();
-            System.out.println("Enter your name: ");
-            userName = sc.nextLine();
-        } while (!authenticate(statement, sc, id, userName));
+         System.out.println("Enter your id: ");
+         id = sc.nextInt();
+         sc.nextLine();
+         System.out.println("Enter your name: ");
+         userName = sc.nextLine();
+     } while (!authenticate(statement, sc, id, userName));
 
 
-
+ }catch (Exception e){
+     System.out.println(e);
+ }
     }
 
 }

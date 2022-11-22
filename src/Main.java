@@ -13,7 +13,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        Employee user = new Employee("Mariq", "Petrova", 40, 850);
+        Employee user = new Employee("Mariqs", "Petrova", 40, 850);
 
         showMainMenu(sc, statement);
 
