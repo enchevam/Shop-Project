@@ -1,8 +1,14 @@
 package menus;
 
+import employee.Employee;
+
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import static employee.EmployeeOperation.sortEmployeesBySalary;
 import static menus.LogInMenu.showLogInMenu;
+import static employee.EmployeeOperation.sortEmployeesByName;
 
 public class MainMenu {
 
@@ -35,4 +41,5 @@ public class MainMenu {
             }
         } while (true);
     }
+
 }
