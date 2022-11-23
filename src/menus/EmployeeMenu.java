@@ -10,6 +10,7 @@ import java.util.Scanner;
 import static employee.EmployeeActions.sortEmployeesByName;
 import static employee.EmployeeActions.sortEmployeesBySalary;
 import static products.ProductActions.*;
+import static utility.UtilMethods.*;
 
 public class EmployeeMenu {
 
@@ -40,6 +41,8 @@ public class EmployeeMenu {
 
         do {
             printEmployeeMenu();
+            checkInt(sc, "Enter correct menu choice");
+
             choice = sc.nextInt();
 
             switch (choice) {
@@ -49,37 +52,27 @@ public class EmployeeMenu {
                 }
                 case 2 -> {
                     ArrayList<Product> products = printAllProducts(statement);
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
+                    printProductArrayList(products);
                     System.exit(0);
                 }
                 case 3 -> {
                     ArrayList<Product> products = sortProductsByName(statement);
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
+                    printProductArrayList(products);
                     System.exit(0);
                 }
                 case 4 -> {
                     ArrayList<Product> products = sortProductsByPrice(statement);
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
+                    printProductArrayList(products);
                     System.exit(0);
                 }
                 case 16 -> {
                     ArrayList<Employee> employees = sortEmployeesByName(statement);
-                    for (Employee e : employees) {
-                        System.out.println(e);
-                    }
+                    printEmployeeArrayList(employees);
                     System.exit(0);
                 }
                 case 17 -> {
                     ArrayList<Employee> employees = sortEmployeesBySalary(statement);
-                    for (Employee e : employees) {
-                        System.out.println(e);
-                    }
+                    printEmployeeArrayList(employees);
                     System.exit(0);
                 }
                 default -> System.out.println("Invalid action! Try again!\n");

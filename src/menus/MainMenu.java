@@ -21,9 +21,15 @@ public class MainMenu {
     public static void showMainMenu(Scanner sc, Statement statement, Customer customer) {
 
         int choice;
+        boolean correctInput = false;
 
         do {
             printChoices();
+
+            while (!sc.hasNextInt()) {
+                System.out.println("Enter 1 or 2");
+                sc.next();
+            }
             choice = sc.nextInt();
 
             switch (choice) {
@@ -37,7 +43,7 @@ public class MainMenu {
                 }
                 default -> System.out.println("Invalid choice! Try again!\n");
             }
-        } while (true);
+        } while (!correctInput);
     }
 
 }

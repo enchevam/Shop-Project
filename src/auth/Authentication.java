@@ -21,7 +21,7 @@ public class Authentication {
                 showEmployeeMenu(sc,statement);
             }
             else {
-                System.out.println("Invalid first name or id");
+                System.out.println("Incorrect first name or id");
                 return false;
             }
         } catch (SQLException e) {
