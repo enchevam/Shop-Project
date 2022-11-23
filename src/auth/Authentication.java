@@ -1,14 +1,11 @@
 package auth;
 
-import employee.EmployeeOperation;
-import menus.SystemMenu;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-import static menus.SystemMenu.showSystemMenu;
+import static menus.EmployeeMenu.showEmployeeMenu;
 
 public class Authentication {
 
@@ -21,7 +18,7 @@ public class Authentication {
         try {
             rs = statement.executeQuery(query);
             if (rs.next()) {
-                showSystemMenu(sc,statement);
+                showEmployeeMenu(sc,statement);
             }
             else {
                 System.out.println("Invalid first name or id");
