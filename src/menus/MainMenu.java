@@ -1,14 +1,12 @@
 package menus;
 
-import employee.Employee;
+import customer.Customer;
 
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import static employee.EmployeeOperation.sortEmployeesBySalary;
+import static menus.CustomerMenu.showCustomerMenu;
 import static menus.LogInMenu.showLogInMenu;
-import static employee.EmployeeOperation.sortEmployeesByName;
 
 public class MainMenu {
 
@@ -20,7 +18,7 @@ public class MainMenu {
 
     }
 
-    public static void showMainMenu(Scanner sc, Statement statement) {
+    public static void showMainMenu(Scanner sc, Statement statement, Customer customer) {
 
         int choice;
 
@@ -34,7 +32,7 @@ public class MainMenu {
                     System.exit(0);
                 }
                 case 2 -> {
-                    System.out.println("Client");
+                    showCustomerMenu(sc, statement, customer);
                     System.exit(0);
                 }
                 default -> System.out.println("Invalid choice! Try again!\n");

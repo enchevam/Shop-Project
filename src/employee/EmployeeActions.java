@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class EmployeeOperation {
+public class EmployeeActions {
 
     public  static ArrayList<Employee> sortEmployeesByName(Statement statement) {
         ResultSet rs;
@@ -14,16 +14,16 @@ public class EmployeeOperation {
         try {
             rs = statement.executeQuery(query);
             while (rs.next()) {
-                int id = rs.getInt(1);
+                int employeeId = rs.getInt(1);
                 String firstName = rs.getString(2);
                 String lastName = rs.getString(3);
                 int age = rs.getInt(4);
                 int salary = rs.getInt(5);
-                Employee item = new Employee(firstName, lastName,age,salary);
+                Employee item = new Employee(employeeId, firstName, lastName,age,salary);
                 employeeList.add(item);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
         return employeeList;
     }
@@ -35,16 +35,16 @@ public class EmployeeOperation {
         try {
             rs = statement.executeQuery(query);
             while (rs.next()) {
-                int id = rs.getInt(1);
+                int employeeId = rs.getInt(1);
                 String firstName = rs.getString(2);
                 String lastName = rs.getString(3);
                 int age = rs.getInt(4);
                 int salary = rs.getInt(5);
-                Employee item = new Employee(firstName, lastName,age,salary);
+                Employee item = new Employee(employeeId, firstName, lastName,age,salary);
                 employeeList.add(item);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
         return employeeList;
     }

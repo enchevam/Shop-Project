@@ -1,4 +1,4 @@
-import employee.Employee;
+import customer.Customer;
 
 import java.util.Scanner;
 import java.sql.*;
@@ -6,6 +6,8 @@ import java.sql.*;
 import static menus.MainMenu.showMainMenu;
 
 public class Main {
+
+
     public static void main(String[] args) throws SQLException {
 
         DbConnection.connect();
@@ -13,9 +15,9 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        Employee user = new Employee("Mariqs", "Petrova", 40, 850);
+        Customer customer = new Customer();
 
-        showMainMenu(sc, statement);
+        showMainMenu(sc, statement, customer);
 
     }
 }
