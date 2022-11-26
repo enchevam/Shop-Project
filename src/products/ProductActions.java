@@ -50,19 +50,20 @@ public class ProductActions {
         return product;
     }
 
-    public static ArrayList<Product> sortProductsByPrice(Statement statement, String query) {
+    public static ArrayList<Product> sortProducts(Statement statement, String query) {
         ArrayList<Product> productsList = new ArrayList<>();
         addDataToProductList(statement, productsList, query);
 
         return productsList;
     }
 
-
-    public static ArrayList<Product> sortProductsByName(Statement statement, String query) {
-        ArrayList<Product> productsList = new ArrayList<>();
-        addDataToProductList(statement, productsList, query);
-
-        return productsList;
+    public static void subtractQuantity(Statement statement, int quantity, int id) {
+        try {
+            String query = "UPDATE products SET quantity =(quantity - " + quantity + ") WHERE id =" + id;
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     private static void addDataToProductList(Statement statement, ArrayList<Product> productsList, String query) {

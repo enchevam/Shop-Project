@@ -66,15 +66,16 @@ public class CustomerMenu {
                     checkInt(sc, "Enter valid product id");
 
                     int id = sc.nextInt();
+                    int quantity;
                     Product product;
                     do {
                         System.out.print("Enter product quantity: ");
                         checkInt(sc, "Enter valid data");
-                        int quantity = sc.nextInt();
+                        quantity = sc.nextInt();
                         product = searchProductsById(statement, id, quantity);
                     } while (product == null);
                     customer.addToCart(product);
-
+                    subtractQuantity(statement, quantity, id);
                     System.out.println(customer);
                 }
                 case 5 -> System.out.println("Your total is: " + customer.calculateTotalSum());

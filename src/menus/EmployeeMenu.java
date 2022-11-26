@@ -56,12 +56,12 @@ public class EmployeeMenu {
                     System.exit(0);
                 }
                 case 3 -> {
-                    ArrayList<Product> products = sortProductsByName(statement, QUERY_SORT_PRODUCTS_BY_NAME);
+                    ArrayList<Product> products = sortProducts(statement, QUERY_SORT_PRODUCTS_BY_NAME);
                     printProductArrayList(products);
                     System.exit(0);
                 }
                 case 4 -> {
-                    ArrayList<Product> products = sortProductsByPrice(statement, QUERY_SORT_PRODUCTS_BY_PRICE);
+                    ArrayList<Product> products = sortProducts(statement, QUERY_SORT_PRODUCTS_BY_PRICE);
                     printProductArrayList(products);
                     System.exit(0);
                 }
