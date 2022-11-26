@@ -22,7 +22,6 @@ public class MainMenu {
 
         int choice;
         boolean correctInput = false;
-
         do {
             printChoices();
 
@@ -41,7 +40,8 @@ public class MainMenu {
                     showCustomerMenu(sc, statement, customer);
                     System.exit(0);
                 }
-                default -> System.out.println("Invalid choice! Try again!\n");
+                default ->
+                    System.out.println("Invalid choice! Try again!\n");
             }
         } while (!correctInput);
     }

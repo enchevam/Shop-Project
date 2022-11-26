@@ -7,9 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static employee.EmployeeActions.sortEmployeesByName;
-import static employee.EmployeeActions.sortEmployeesBySalary;
+import static employee.EmployeeActions.*;
 import static products.ProductActions.*;
+import static utility.Queries.*;
 import static utility.UtilMethods.*;
 
 public class EmployeeMenu {
@@ -51,27 +51,27 @@ public class EmployeeMenu {
                     System.exit(0);
                 }
                 case 2 -> {
-                    ArrayList<Product> products = printAllProducts(statement);
+                    ArrayList<Product> products = printProducts(statement, QUERY_PRINT_PRODUCTS_BY_EMPLOYEE);
                     printProductArrayList(products);
                     System.exit(0);
                 }
                 case 3 -> {
-                    ArrayList<Product> products = sortProductsByName(statement);
+                    ArrayList<Product> products = sortProductsByName(statement, QUERY_SORT_PRODUCTS_BY_NAME);
                     printProductArrayList(products);
                     System.exit(0);
                 }
                 case 4 -> {
-                    ArrayList<Product> products = sortProductsByPrice(statement);
+                    ArrayList<Product> products = sortProductsByPrice(statement, QUERY_SORT_PRODUCTS_BY_PRICE);
                     printProductArrayList(products);
                     System.exit(0);
                 }
                 case 16 -> {
-                    ArrayList<Employee> employees = sortEmployeesByName(statement);
+                    ArrayList<Employee> employees = sortEmployees(statement, QUERY_SORT_EMPLOYEES_BY_NAME);
                     printEmployeeArrayList(employees);
                     System.exit(0);
                 }
                 case 17 -> {
-                    ArrayList<Employee> employees = sortEmployeesBySalary(statement);
+                    ArrayList<Employee> employees = sortEmployees(statement, QUERY_SORT_EMPLOYEES_BY_SALARY);
                     printEmployeeArrayList(employees);
                     System.exit(0);
                 }

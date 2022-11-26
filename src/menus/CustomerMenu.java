@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static products.ProductActions.*;
+import static utility.Queries.QUERY_PRINT_PRODUCTS_BY_CUSTOMER;
+import static utility.Queries.QUERY_SEARCH_PRODUCTS;
 import static utility.UtilMethods.*;
 
 public class CustomerMenu {
@@ -34,16 +36,17 @@ public class CustomerMenu {
 
             switch (choice) {
                 case 1 -> {
-                    ArrayList<Product> products = printAllProductsByCustomer(statement);
+
+                    ArrayList<Product> products = printProducts(statement, QUERY_PRINT_PRODUCTS_BY_CUSTOMER);
                     printProductArrayList(products);
-                    System.exit(0);
                 }
                 case 2 -> {
                     System.out.print("Enter product type: ");
                     sc.nextLine();
                     String type = sc.nextLine();
-                    checkString(type,sc);
-                    ArrayList<Product> products = searchProductsByCategory(statement, type);
+                    checkString(type, sc);
+                    String query = QUERY_SEARCH_PRODUCTS + type + "%'";
+                    ArrayList<Product> products = searchProducts(statement, query);
                     printProductArrayList(products);
                     System.exit(0);
                 }
@@ -51,8 +54,9 @@ public class CustomerMenu {
                     System.out.print("Enter product name: ");
                     sc.nextLine();
                     String name = sc.nextLine();
-                    checkString(name,sc);
-                    ArrayList<Product> products = searchProductsByName(statement, name);
+                    checkString(name, sc);
+                    String query = QUERY_SEARCH_PRODUCTS + name + "%'";
+                    ArrayList<Product> products = searchProducts(statement, query);
                     printProductArrayList(products);
                     System.exit(0);
                 }
@@ -70,6 +74,7 @@ public class CustomerMenu {
                         product = searchProductsById(statement, id, quantity);
                     } while (product == null);
                     customer.addToCart(product);
+
                     System.out.println(customer);
                 }
                 case 5 -> System.out.println("Your total is: " + customer.calculateTotalSum());

@@ -6,10 +6,12 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 import static menus.EmployeeMenu.showEmployeeMenu;
+import static utility.UtilMethods.checkPositive;
 
 public class Authentication {
 
     public static boolean authenticate(Statement statement, Scanner sc, int id, String userName) {
+
 
         ResultSet rs;
         String query = "SELECT id, first_name FROM employee WHERE id='"

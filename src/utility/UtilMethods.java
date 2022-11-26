@@ -34,17 +34,12 @@ public class UtilMethods {
         }
     }
 
-    public static int checkPositive( Scanner sc){
-        int input = 0;
-        while(sc.hasNextInt()){
-            input= sc.nextInt();
+    public static int checkPositive(int id) {
 
-            if(input >= 0){
-                break;
+            if (id < 0) {
+                System.out.println("Not a positive; Try again");
             }
-            System.out.println("Not an integer; try again");
-        }
-        return input;
+            return id;
     }
 }
 

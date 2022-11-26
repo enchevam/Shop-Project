@@ -17,10 +17,10 @@ public class LogInMenu {
 
             System.out.print("Enter your id: ");
 
-            //checkInt(sc, "Enter valid Employee id");
-
-            id = checkPositive(sc);
-
+            do {
+                checkInt(sc, "Enter valid Employee id");
+                id = sc.nextInt();
+            } while (checkPositive(id) < 0);
 
             sc.nextLine();
 
@@ -30,7 +30,6 @@ public class LogInMenu {
             checkString(userName, sc);
 
         } while (!authenticate(statement, sc, id, userName));
-
 
 
     }
