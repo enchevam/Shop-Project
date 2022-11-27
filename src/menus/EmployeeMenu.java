@@ -11,10 +11,11 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static employee.EmployeeActions.sortEmployeesByName;
-import static employee.EmployeeActions.sortEmployeesBySalary;
+import static employee.EmployeeActions.*;
 import static products.ProductActions.*;
-import static utility.Queries.QUERY_PRINT_PRODUCTS_BY_EMPLOYEE;
+import static utility.Queries.*;
+import static utility.UtilMethods.printEmployeeArrayList;
+import static utility.UtilMethods.printProductArrayList;
 
 
 public class EmployeeMenu {
@@ -43,7 +44,7 @@ public class EmployeeMenu {
 
     public static void showEmployeeMenu(Scanner sc, Statement statement) throws SQLException {
         int choice;
-        Timestamp showTime =new Timestamp(System.currentTimeMillis());
+        Timestamp showTime = new Timestamp(System.currentTimeMillis());
 
         do {
             printSystemMenu();
@@ -51,130 +52,104 @@ public class EmployeeMenu {
 
             switch (choice) {
                 case 1 -> {
-                    int products =createProduct(statement);
-                    System.out.println("Product was created successfully at:"+showTime);
+                    createProduct(statement);
+                    System.out.println("Product was created successfully at: " + showTime);
                     System.exit(0);
                 }
                 case 2 -> {
-                    ArrayList<Product> products = printProducts(statement,QUERY_PRINT_PRODUCTS_BY_EMPLOYEE);
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
-                    System.out.println("Product was Printed at:"+showTime);
+                    ArrayList<Product> products = printProducts(statement, QUERY_PRINT_PRODUCTS_BY_EMPLOYEE);
+                    printProductArrayList(products);
+                    System.out.println("Product was Printed at: " + showTime);
                     System.exit(0);
                 }
                 case 3 -> {
-                    ArrayList<Product> products = sortProductsByName(statement);
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
-                    System.out.println("Product was sorted by Name at:"+showTime);
+                    ArrayList<Product> products = sortProducts(statement, QUERY_SORT_PRODUCTS_BY_NAME);
+                    printProductArrayList(products);
+                    System.out.println("Product was sorted by Name at: " + showTime);
                     System.exit(0);
                 }
                 case 4 -> {
-                    ArrayList<Product> products = sortProductsByPrice(statement);
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
-                    System.out.println("Product was sorted by Price at:"+showTime);
+                    ArrayList<Product> products = sortProducts(statement, QUERY_SORT_PRODUCTS_BY_PRICE);
+                    printProductArrayList(products);
+                    System.out.println("Product was sorted by Price at: " + showTime);
                     System.exit(0);
                 }
                 case 5 -> {
-                    ArrayList<Product> products = sortProductsByExpirationDate(statement);
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
-                    System.out.println("Product was sorted by Expiration Date at:"+showTime);
+                    ArrayList<Product> products = sortProducts(statement, QUERY_SORT_PRODUCTS_BY_EXPIRATION_DATE);
+                    printProductArrayList(products);
+                    System.out.println("Product was sorted by Expiration Date at: " + showTime);
                     System.exit(0);
                 }
 
                 case 6 -> {
                     ArrayList<Product> products = checkProductsWhereIdIsEqualToInput(statement);
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
+                    printProductArrayList(products);
                     System.exit(0);
                 }
                 case 7 -> {
                     ArrayList<Product> products = checkProductWhereNameEqualsInput(statement);
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
+                    printProductArrayList(products);
                     System.exit(0);
                 }
                 case 8 -> {
                     ArrayList<Product> products = sortProductByPriceHigherOrEqualToInput(statement);
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
-                    System.out.println("Product was sorted by Price higher than input at:"+showTime);
+                    printProductArrayList(products);
+                    System.out.println("Product was sorted by Price higher than input at: " + showTime);
                     System.exit(0);
                 }
                 case 9 -> {
                     ArrayList<Product> products = sortProductByPriceLowerOrEqualToInput(statement);
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
-                    System.out.println("Product was sorted by Price lower than input at:"+showTime);
+                    printProductArrayList(products);
+                    System.out.println("Product was sorted by Price lower than input at: " + showTime);
                     System.exit(0);
                 }
 
                 case 10 -> {
                     ArrayList<Product> products = sortProductByQuantityHigherOrEqualToInput(statement);
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
-                    System.out.println("Product was sorted by Quantity higher than input at:"+showTime);
+                    printProductArrayList(products);
+                    System.out.println("Product was sorted by Quantity higher than input at: " + showTime);
                     System.exit(0);
                 }
                 case 11 -> {
                     ArrayList<Product> products = sortProductByQuantityLowerOrEqualToInput(statement);
-
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
-                    System.out.println("Product was sorted by Quantity lower than input at:"+showTime);
+                    printProductArrayList(products);
+                    System.out.println("Product was sorted by Quantity lower than input at: " + showTime);
                     System.exit(0);
                 }
                 case 12 -> {
-                    int products = deleteProductWhereIdEqualsInput(statement);
-                    System.out.println("Product was deleted successfully at:"+showTime);
+                    deleteProductWhereIdEqualsInput(statement);
+                    System.out.println("Product was deleted successfully at: " + showTime);
 
                     System.exit(0);
                 }
                 case 13 -> {
-                    int products = changeProductPriceWhereIdEqualsInput(statement);
-                    System.out.println("The price was changed successfully at:"+showTime);
+                    changeProductPriceWhereIdEqualsInput(statement);
+                    System.out.println("The price was changed successfully at: " + showTime);
                     System.exit(0);
                 }
                 case 14 -> {
-                    int products = changeProductQuantityWhereIdEqualsInput(statement);
-                    System.out.println("The quantity was changed successfully at:"+showTime);
+                    changeProductQuantityWhereIdEqualsInput(statement);
+                    System.out.println("The quantity was changed successfully at: " + showTime);
 
                     System.exit(0);
                 }
                 case 15 -> {
-                    int products = changeProductNameWhereIdEqualsInput(statement);
-                    System.out.println("The name was changed successfully at"+showTime);
+                    changeProductNameWhereIdEqualsInput(statement);
+                    System.out.println("The name was changed successfully at: " + showTime);
                     System.exit(0);
                 }
 
                 case 16 -> {
 
-                    ArrayList<Employee> employees = sortEmployeesByName(statement);
-                    for (Employee e : employees) {
-                        System.out.println(e);
-                    }
-                    System.out.println("Employees were sorted by Name at:"+showTime);
+                    ArrayList<Employee> employees = sortEmployees(statement, QUERY_SORT_EMPLOYEES_BY_NAME);
+                    printEmployeeArrayList(employees);
+                    System.out.println("Employees were sorted by Name at: " + showTime);
                     System.exit(0);
                 }
                 case 17 -> {
                     {
-                        ArrayList<Employee> employees = sortEmployeesBySalary(statement);
-                        for (Employee e : employees) {
-                            System.out.println(e);
-                            System.out.println("Employees were sorted by Salary at:"+showTime);
-                        }
+                        ArrayList<Employee> employees = sortEmployees(statement, QUERY_SORT_EMPLOYEES_BY_SALARY);
+                        printEmployeeArrayList(employees);
                         System.exit(0);
                     }
 

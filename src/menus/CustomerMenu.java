@@ -11,8 +11,7 @@ import java.util.Scanner;
 import static products.ProductActions.*;
 import static utility.Queries.QUERY_PRINT_PRODUCTS_BY_CUSTOMER;
 import static utility.Queries.QUERY_SEARCH_PRODUCTS;
-import static utility.UtilMethods.checkString;
-import static utility.UtilMethods.printProductArrayList;
+import static utility.UtilMethods.*;
 
 public class CustomerMenu {
 
@@ -63,10 +62,13 @@ public class CustomerMenu {
                 }
                 case 4 -> {
                     System.out.print("Enter product id: ");
+
+                    checkInt(sc, "Enter valid product id");
                     int id = sc.nextInt();
                     Product product;
                     do {
                         System.out.print("Enter product quantity: ");
+                        checkInt(sc, "Enter valid data");
                         int quantity = sc.nextInt();
                         product = searchProductsById(statement, id, quantity);
                     } while (product == null);
@@ -79,4 +81,6 @@ public class CustomerMenu {
             }
         } while (true);
     }
+
+
 }
