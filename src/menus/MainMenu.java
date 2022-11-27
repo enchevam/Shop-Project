@@ -5,6 +5,7 @@ import customer.Customer;
 import java.sql.Statement;
 import java.util.Scanner;
 
+
 import static menus.CustomerMenu.showCustomerMenu;
 import static menus.LogInMenu.showLogInMenu;
 
@@ -21,23 +22,25 @@ public class MainMenu {
     public static void showMainMenu(Scanner sc, Statement statement, Customer customer) {
 
         int choice;
+        try {
+            do {
+                printChoices();
+                choice = sc.nextInt();
 
-        do {
-            printChoices();
-            choice = sc.nextInt();
-
-            switch (choice) {
-                case 1 -> {
-                    showLogInMenu(sc, statement);
-                    System.exit(0);
+                switch (choice) {
+                    case 1 -> {
+                        showLogInMenu(sc, statement);
+                        System.exit(0);
+                    }
+                    case 2 -> {
+                        showCustomerMenu(sc, statement, customer);
+                        System.exit(0);
+                    }
+                    default -> System.out.println("Invalid choice! Try again!\n");
                 }
-                case 2 -> {
-                    showCustomerMenu(sc, statement, customer);
-                    System.exit(0);
-                }
-                default -> System.out.println("Invalid choice! Try again!\n");
-            }
-        } while (true);
+            } while (true);
+        }catch (Exception e){
+            System.out.println("Wrong input? Try again!");
+        }
     }
-
 }

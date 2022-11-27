@@ -2,26 +2,26 @@ package products;
 
     public class Product {
         private final int productId;
-        private String name;
-        private double price;
+        private String productName;
+        private double productPrice;
         private int productQuantity;
         private String productType;
-        private String color;
-        private String expirationDate;
+        private String productColor;
+        private String productExpirationDate;
 
-        public Product(int productId, String name, double price, int productQuantity, String productType, String color, String expirationDate){
+        public Product(int productId, String productName, double productPrice, int productQuantity, String productType, String productColor, String productExpirationDate){
             this.productId = productId;
-            this.name=name;
-            this.price=price;
+            this.productName = productName;
+            this.productPrice = productPrice;
             this.productQuantity = productQuantity;
             this.productType = productType;
-            this.color=color;
-            this.expirationDate = expirationDate;
+            this.productColor = productColor;
+            this.productExpirationDate = productExpirationDate;
 
         }
 
-        public double getPrice() {
-            return price;
+        public double getProductPrice() {
+            return productPrice;
         }
 
         public int getProductQuantity() {
@@ -31,12 +31,12 @@ package products;
         public String toString() {
             return "Product{" +
                     "id=" + productId +
-                    ", name='" + name + '\'' +
-                    ", price=" + price +
+                    ", name='" + productName + '\'' +
+                    ", price=" + productPrice +
                     ", quantity=" + productQuantity +
                     ", type='" + productType + '\'' +
-                    ", color='" + color + '\'' +
-                    ", expiration_date='" + expirationDate + '\'' +
+                    ", color='" + productColor + '\'' +
+                    ", expiration_date='" + productExpirationDate + '\'' +
                     '}';
         }
     }
