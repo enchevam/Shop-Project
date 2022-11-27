@@ -14,6 +14,7 @@ import java.util.Scanner;
 import static employee.EmployeeActions.sortEmployeesByName;
 import static employee.EmployeeActions.sortEmployeesBySalary;
 import static products.ProductActions.*;
+import static utility.Queries.QUERY_PRINT_PRODUCTS_BY_EMPLOYEE;
 
 
 public class EmployeeMenu {
@@ -42,7 +43,7 @@ public class EmployeeMenu {
 
     public static void showEmployeeMenu(Scanner sc, Statement statement) throws SQLException {
         int choice;
-        Timestamp time =new Timestamp(System.currentTimeMillis());
+        Timestamp showTime =new Timestamp(System.currentTimeMillis());
 
         do {
             printSystemMenu();
@@ -51,15 +52,15 @@ public class EmployeeMenu {
             switch (choice) {
                 case 1 -> {
                     int products =createProduct(statement);
-                    System.out.println("Product was created successfully at:"+time);
+                    System.out.println("Product was created successfully at:"+showTime);
                     System.exit(0);
                 }
                 case 2 -> {
-                    ArrayList<Product> products = printAllProducts(statement);
+                    ArrayList<Product> products = printProducts(statement,QUERY_PRINT_PRODUCTS_BY_EMPLOYEE);
                     for (Product e : products) {
                         System.out.println(e);
                     }
-                    System.out.println("Product was Printed at:"+time);
+                    System.out.println("Product was Printed at:"+showTime);
                     System.exit(0);
                 }
                 case 3 -> {
@@ -67,7 +68,7 @@ public class EmployeeMenu {
                     for (Product e : products) {
                         System.out.println(e);
                     }
-                    System.out.println("Product was sorted by Name at:"+time);
+                    System.out.println("Product was sorted by Name at:"+showTime);
                     System.exit(0);
                 }
                 case 4 -> {
@@ -75,7 +76,7 @@ public class EmployeeMenu {
                     for (Product e : products) {
                         System.out.println(e);
                     }
-                    System.out.println("Product was sorted by Price at:"+time);
+                    System.out.println("Product was sorted by Price at:"+showTime);
                     System.exit(0);
                 }
                 case 5 -> {
@@ -83,7 +84,7 @@ public class EmployeeMenu {
                     for (Product e : products) {
                         System.out.println(e);
                     }
-                    System.out.println("Product was sorted by Expiration Date at:"+time);
+                    System.out.println("Product was sorted by Expiration Date at:"+showTime);
                     System.exit(0);
                 }
 
@@ -106,7 +107,7 @@ public class EmployeeMenu {
                     for (Product e : products) {
                         System.out.println(e);
                     }
-                    System.out.println("Product was sorted by Price higher than input at:"+time);
+                    System.out.println("Product was sorted by Price higher than input at:"+showTime);
                     System.exit(0);
                 }
                 case 9 -> {
@@ -114,7 +115,7 @@ public class EmployeeMenu {
                     for (Product e : products) {
                         System.out.println(e);
                     }
-                    System.out.println("Product was sorted by Price lower than input at:"+time);
+                    System.out.println("Product was sorted by Price lower than input at:"+showTime);
                     System.exit(0);
                 }
 
@@ -123,7 +124,7 @@ public class EmployeeMenu {
                     for (Product e : products) {
                         System.out.println(e);
                     }
-                    System.out.println("Product was sorted by Quantity higher than input at:"+time);
+                    System.out.println("Product was sorted by Quantity higher than input at:"+showTime);
                     System.exit(0);
                 }
                 case 11 -> {
@@ -132,28 +133,29 @@ public class EmployeeMenu {
                     for (Product e : products) {
                         System.out.println(e);
                     }
-                    System.out.println("Product was sorted by Quantity lower than input at:"+time);
+                    System.out.println("Product was sorted by Quantity lower than input at:"+showTime);
                     System.exit(0);
                 }
                 case 12 -> {
                     int products = deleteProductWhereIdEqualsInput(statement);
-                    System.out.println("Product was deleted successfully at:"+time);
+                    System.out.println("Product was deleted successfully at:"+showTime);
 
                     System.exit(0);
                 }
                 case 13 -> {
                     int products = changeProductPriceWhereIdEqualsInput(statement);
-                    System.out.println("The price was changed successfully at:"+time);
+                    System.out.println("The price was changed successfully at:"+showTime);
                     System.exit(0);
                 }
                 case 14 -> {
                     int products = changeProductQuantityWhereIdEqualsInput(statement);
-                    System.out.println("The quantity was changed successfully at:"+time);
+                    System.out.println("The quantity was changed successfully at:"+showTime);
+
                     System.exit(0);
                 }
                 case 15 -> {
                     int products = changeProductNameWhereIdEqualsInput(statement);
-                    System.out.println("The name was changed successfully at"+time);
+                    System.out.println("The name was changed successfully at"+showTime);
                     System.exit(0);
                 }
 
@@ -163,7 +165,7 @@ public class EmployeeMenu {
                     for (Employee e : employees) {
                         System.out.println(e);
                     }
-                    System.out.println("Employees were sorted by Name at:"+time);
+                    System.out.println("Employees were sorted by Name at:"+showTime);
                     System.exit(0);
                 }
                 case 17 -> {
@@ -171,7 +173,7 @@ public class EmployeeMenu {
                         ArrayList<Employee> employees = sortEmployeesBySalary(statement);
                         for (Employee e : employees) {
                             System.out.println(e);
-                            System.out.println("Employees were sorted by Salary at:"+time);
+                            System.out.println("Employees were sorted by Salary at:"+showTime);
                         }
                         System.exit(0);
                     }

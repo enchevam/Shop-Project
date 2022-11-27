@@ -4,10 +4,15 @@ import customer.Customer;
 import products.Product;
 
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import static products.ProductActions.*;
+import static utility.Queries.QUERY_PRINT_PRODUCTS_BY_CUSTOMER;
+import static utility.Queries.QUERY_SEARCH_PRODUCTS;
+import static utility.UtilMethods.checkString;
+import static utility.UtilMethods.printProductArrayList;
 
 public class CustomerMenu {
 
@@ -23,14 +28,14 @@ public class CustomerMenu {
 
     public static void showCustomerMenu(Scanner sc, Statement statement, Customer customer) {
         int choice;
-
+        Timestamp showTime =new Timestamp(System.currentTimeMillis());
         do {
             printCustomerMenu();
             choice = sc.nextInt();
 
             switch (choice) {
                 case 1 -> {
-                    ArrayList<Product> products = printAllProductsByCustomer(statement);
+                    ArrayList<Product> products = printProducts(statement,QUERY_PRINT_PRODUCTS_BY_CUSTOMER);
                     for (Product e : products) {
                         System.out.println(e);
                     }
@@ -40,20 +45,20 @@ public class CustomerMenu {
                     System.out.print("Enter product type: ");
                     sc.nextLine();
                     String type = sc.nextLine();
-                    ArrayList<Product> products = searchProductsByCategory(statement,type);
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
+                    checkString(type, sc);
+                    String query = QUERY_SEARCH_PRODUCTS + type + "%'";
+                    ArrayList<Product> products = searchProducts(statement, query);
+                    printProductArrayList(products);
                     System.exit(0);
                 }
                 case 3 -> {
                     System.out.print("Enter product name: ");
                     sc.nextLine();
                     String name = sc.nextLine();
-                    ArrayList<Product> products = searchProductsByName(statement,name);
-                    for (Product e : products) {
-                        System.out.println(e);
-                    }
+                    checkString(name, sc);
+                    String query = QUERY_SEARCH_PRODUCTS + name + "%'";
+                    ArrayList<Product> products = searchProducts(statement, query);
+                    printProductArrayList(products);
                     System.exit(0);
                 }
                 case 4 -> {
@@ -68,7 +73,8 @@ public class CustomerMenu {
                     customer.addToCart(product);
                     System.out.println(customer);
                 }
-                case 5 -> System.out.println("Your total is: " + customer.calculateTotalSum());
+                case 5 -> System.out.println("Your total is: " + customer.calculateTotalSum()+" at: "+showTime);
+
                 default -> System.out.println("Invalid choice! Try again!\n");
             }
         } while (true);

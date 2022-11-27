@@ -29,15 +29,14 @@ package products;
         }
         @Override
         public String toString() {
-            return "Product{" +
-                    "id=" + productId +
-                    ", name='" + productName + '\'' +
-                    ", price=" + productPrice +
-                    ", quantity=" + productQuantity +
-                    ", type='" + productType + '\'' +
-                    ", color='" + productColor + '\'' +
-                    ", expiration_date='" + productExpirationDate + '\'' +
-                    '}';
+            return "Product" + '\n' +
+                    "id: " + productId + '\n' +
+                    "Name: " + productName + '\n' +
+                    "Price: " + productPrice + '\n' +
+                    "Quantity: " + productQuantity + '\n' +
+                    "Type: " + productType + '\n' +
+                    "Color:  "+ productColor + '\n' +
+                    "Expiration Date: " + productExpirationDate + '\n' + "----------------------------- \n";
         }
     }
 
