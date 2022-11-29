@@ -1,29 +1,32 @@
 package products;
 
+import utility.Types;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static utility.UtilMethods.checkString;
+import static utility.UtilMethods.checkInt;
 
 public class ProductActions {
     static Scanner sc = new Scanner(System.in);
-
+    
     public static int createProduct(Statement statement) throws SQLException {
 
         System.out.println("Enter new product name");
         String nameInput = sc.nextLine();
-        checkString(nameInput, sc);
+       // checkString(nameInput, sc);
         System.out.println("Enter new product price");
         double priceInput = Double.parseDouble(sc.nextLine());
         System.out.println("Enter new product quantity");
         int quantityInput;
-        checkInt(quantityInput, sc);
+        // checkInt( sc,"Enter an integer next time");
         quantityInput = Integer.parseInt(sc.nextLine());
         System.out.println("Enter new product type");
-        String typeInput = sc.nextLine();
+      //  String typeInput = sc.nextLine();
+        Types.MyEnums typeInput = Types.MyEnums.valueOf(sc.nextLine().toUpperCase());
         System.out.println("Enter new product color");
         String colorInput = sc.nextLine();
         System.out.println("Enter new product expiration_date");
@@ -201,5 +204,6 @@ public class ProductActions {
             System.out.println(e);
         }
     }
+
 }
 

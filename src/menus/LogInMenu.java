@@ -24,6 +24,7 @@ public class LogInMenu {
 
  }catch (Exception e){
      System.out.println("You entered the wrong characters,please try again!");
+     java.awt.Toolkit.getDefaultToolkit().beep();
  }
     }
 

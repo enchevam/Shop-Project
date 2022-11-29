@@ -41,6 +41,7 @@ public class MainMenu {
             } while (true);
         }catch (Exception e){
             System.out.println("Wrong input? Try again!");
+            java.awt.Toolkit.getDefaultToolkit().beep();
         }
     }
 }
