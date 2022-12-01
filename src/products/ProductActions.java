@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static utility.UtilMethods.checkInt;
+import static utility.UtilMethods.checkString;
 
 public class ProductActions {
     static Scanner sc = new Scanner(System.in);
@@ -17,16 +18,15 @@ public class ProductActions {
 
         System.out.println("Enter new product name");
         String nameInput = sc.nextLine();
-       // checkString(nameInput, sc);
+        checkString(nameInput, sc);
         System.out.println("Enter new product price");
         double priceInput = Double.parseDouble(sc.nextLine());
         System.out.println("Enter new product quantity");
         int quantityInput;
-        // checkInt( sc,"Enter an integer next time");
+         checkInt( sc,"Enter an integer next time");
         quantityInput = Integer.parseInt(sc.nextLine());
         System.out.println("Enter new product type");
-      //  String typeInput = sc.nextLine();
-        Types.MyEnums typeInput = Types.MyEnums.valueOf(sc.nextLine().toUpperCase());
+        Types.types typeInput = Types.types.valueOf(sc.nextLine().toUpperCase());
         System.out.println("Enter new product color");
         String colorInput = sc.nextLine();
         System.out.println("Enter new product expiration_date");

@@ -2,12 +2,12 @@ package utility;
 
 public class Types {
 
-    public  enum MyEnums{
+    public enum types {
         FOOD,DRINKS,SANITARY,MAKEUP,OTHERS;
         }
 
-public String mu(){
-        MyEnums types = MyEnums.FOOD;
+public String enumTypes(){
+        types types = Types.types.FOOD;
         switch (types) {
             case FOOD -> {
                 return "food";

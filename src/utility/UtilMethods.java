@@ -19,7 +19,7 @@ public class UtilMethods {public static void printProductArrayList(ArrayList<Pro
     }
 
     public static void checkString(String input, Scanner sc) {
-        while (!input.matches("[a-zA-Z]+")) {
+        while (!input.matches("[a-zA-Z ]*")) {
             System.out.println("Only letters are allowed");
             input = sc.nextLine();
         }
@@ -28,7 +28,7 @@ public class UtilMethods {public static void printProductArrayList(ArrayList<Pro
     public static void checkInt(Scanner sc, String msg) {
         while (!sc.hasNextInt()) {
             System.out.println(msg);
-            sc.next();
+            sc.nextInt();
         }
     }
 
