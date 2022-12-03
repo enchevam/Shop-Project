@@ -4,6 +4,7 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 import static auth.Authentication.authenticate;
+import static utility.UtilMethods.*;
 
 public class LogInMenu {
 
@@ -11,18 +12,23 @@ public class LogInMenu {
 
         int id;
         String userName;
-
         do {
 
-            System.out.println("Enter your id: ");
-            id = sc.nextInt();
+            System.out.print("Enter your id: ");
+
+            do {
+                checkInt(sc, "Enter valid Employee id");
+                id = sc.nextInt();
+            } while (checkPositive(id) < 0);
+
             sc.nextLine();
-            System.out.println("Enter your name: ");
+
+            System.out.print("Enter your name: ");
             userName = sc.nextLine();
+
+            checkString(userName, sc);
+
         } while (!authenticate(statement, sc, id, userName));
-
-
-
     }
 
 }

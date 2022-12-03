@@ -9,7 +9,7 @@ public class Customer {
 
     List<Product> shoppingCart;
 
-    public Customer(){
+    public Customer() {
         this.shoppingCart = new ArrayList<>();
     }
 
@@ -17,15 +17,15 @@ public class Customer {
         this.shoppingCart = shoppingCart;
     }
 
-    public void addToCart(Product product){
+    public void addToCart(Product product) {
         shoppingCart.add(product);
     }
 
-    public double calculateTotalSum(){
+    public double calculateTotalSum() {
 
         double sum = 0;
-        for (Product p: shoppingCart) {
-            sum += p.getPrice() * p.getProductQuantity();
+        for (Product p : shoppingCart) {
+            sum += p.getProductPrice() * p.getProductQuantity();
         }
 
         return sum;
@@ -33,8 +33,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "shoppingCart=" + shoppingCart +
-                '}';
+        return "Customer \n" +
+                "Shopping Cart: " + shoppingCart;
     }
 }

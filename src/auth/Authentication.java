@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import static menus.EmployeeMenu.showEmployeeMenu;
 
+
 public class Authentication {
 
     public static boolean authenticate(Statement statement, Scanner sc, int id, String userName) {
