@@ -1,6 +1,6 @@
 package products;
 
-    public class Product {
+public class Product {
         private final int productId;
         private String productName;
         private double productPrice;
@@ -29,9 +29,8 @@ package products;
         }
         @Override
         public String toString() {
-            return "Product" + '\n' +
+            return '\n' +"\033[1m"+ productName  + "\033[0m" + '\n' +
                     "id: " + productId + '\n' +
-                    "Name: " + productName + '\n' +
                     "Price: " + productPrice + '\n' +
                     "Quantity: " + productQuantity + '\n' +
                     "Type: " + productType + '\n' +

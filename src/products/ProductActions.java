@@ -1,37 +1,43 @@
 package products;
 
-import utility.Types;
+import utility.Type;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static utility.UtilMethods.checkInt;
-import static utility.UtilMethods.checkString;
+import static utility.UtilMethods.*;
 
 public class ProductActions {
     static Scanner sc = new Scanner(System.in);
-    
+
     public static int createProduct(Statement statement) throws SQLException {
 
-        System.out.println("Enter new product name");
+        System.out.print("Enter new product name: ");
         String nameInput = sc.nextLine();
         checkString(nameInput, sc);
-        System.out.println("Enter new product price");
+        System.out.print("Enter new product price: ");
         double priceInput = Double.parseDouble(sc.nextLine());
-        System.out.println("Enter new product quantity");
+        System.out.print("Enter new product quantity: ");
         int quantityInput;
-         checkInt( sc,"Enter an integer next time");
+        checkInt(sc, "Enter an integer next time");
         quantityInput = Integer.parseInt(sc.nextLine());
-        System.out.println("Enter new product type");
-        Types.types typeInput = Types.types.valueOf(sc.nextLine().toUpperCase());
-        System.out.println("Enter new product color");
+        Type typeInput = checkProduct(sc);
+        System.out.print("Enter new product color: ");
         String colorInput = sc.nextLine();
-        System.out.println("Enter new product expiration_date");
-        String expiration_dateInput = sc.nextLine();
-        String query = "INSERT INTO products(product_name,price,quantity,product_type,product_color,expiration_date) VALUES ('" + nameInput + "'," + priceInput + "," + quantityInput + ",'" + typeInput + "','" + colorInput + "','" + expiration_dateInput + "');";
+        checkString(colorInput, sc);
+        LocalDate exDate;
+        String expirationDateInput;
+        do {
+            System.out.print("Enter new product expiration date (dd-mm-yyyy): ");
+            expirationDateInput = sc.nextLine();
+        }
+        while (!formatString(expirationDateInput));
+        exDate = formattedDate(expirationDateInput);
+        String query = "INSERT INTO products(product_name,price,quantity,product_type,product_color,expiration_date) VALUES ('" + nameInput + "'," + priceInput + "," + quantityInput + ",'" + typeInput + "','" + colorInput + "','" + exDate + "');";
         return statement.executeUpdate(query);
     }
 
@@ -58,7 +64,7 @@ public class ProductActions {
     }
 
     public static ArrayList<Product> sortProductByPriceHigherOrEqualToInput(Statement statement) {
-
+        System.out.print("Enter price: ");
         double input = sc.nextInt();
         ArrayList<Product> productsList = new ArrayList<>();
         String query = "SELECT * FROM products WHERE price>=" + input;
@@ -68,7 +74,7 @@ public class ProductActions {
     }
 
     public static ArrayList<Product> sortProductByPriceLowerOrEqualToInput(Statement statement) {
-
+        System.out.print("Enter price: ");
         double input = sc.nextInt();
         ArrayList<Product> productsList = new ArrayList<>();
         String query = "SELECT * FROM products WHERE price<=" + input;
@@ -78,6 +84,7 @@ public class ProductActions {
     }
 
     public static ArrayList<Product> sortProductByQuantityHigherOrEqualToInput(Statement statement) {
+        System.out.print("Enter quantity: ");
         int input = sc.nextInt();
         ArrayList<Product> productsList = new ArrayList<>();
         String query = "SELECT * FROM products WHERE quantity>=" + input;
@@ -87,7 +94,7 @@ public class ProductActions {
     }
 
     public static ArrayList<Product> sortProductByQuantityLowerOrEqualToInput(Statement statement) {
-
+        System.out.print("Enter quantity: ");
         int input = sc.nextInt();
         ArrayList<Product> productsList = new ArrayList<>();
         String query = "SELECT * FROM products WHERE quantity<=" + input;
@@ -97,6 +104,7 @@ public class ProductActions {
     }
 
     public static ArrayList<Product> checkProductsWhereIdIsEqualToInput(Statement statement) {
+        System.out.print("Enter id: ");
         int input = sc.nextInt();
         ArrayList<Product> productsList = new ArrayList<>();
         String query = "SELECT * FROM products WHERE id =" + input;
@@ -106,32 +114,28 @@ public class ProductActions {
     }
 
     public static ArrayList<Product> checkProductWhereNameEqualsInput(Statement statement) {
-        System.out.println("Enter product name");
+        System.out.print("Enter product name: ");
         String input = sc.nextLine();
         ArrayList<Product> productsList = new ArrayList<>();
 
-        String query = "SELECT * FROM products WHERE name LIKE '" + input + "'";
+        String query = "SELECT * FROM products WHERE product_name LIKE '" + input + "'";
         addDataToProductList(statement, productsList, query);
 
         return productsList;
     }
 
     public static int deleteProductWhereIdEqualsInput(Statement statement) throws SQLException {
-
-        System.out.println("Enter id");
-        int idInput = sc.nextInt();
-
+        int idInput = getProductIdInput(statement);
         String query = "DELETE FROM products WHERE id =" + idInput;
-
         return statement.executeUpdate(query);
 
     }
 
+
     public static int changeProductPriceWhereIdEqualsInput(Statement statement) throws SQLException {
-        System.out.println("Enter id");
-        int idInput = sc.nextInt();
-        System.out.println("Set new product price:");
-        double newPrice = sc.nextInt();
+        int idInput = getProductIdInput(statement);
+        System.out.print("Set new product price:");
+        double newPrice = sc.nextDouble();
         String query = "UPDATE products SET price =" + newPrice + " WHERE id =" + idInput;
 
         return statement.executeUpdate(query);
@@ -139,23 +143,21 @@ public class ProductActions {
 
     public static int changeProductQuantityWhereIdEqualsInput(Statement statement) throws SQLException {
 
-        System.out.println("Enter id");
-        int idInput = sc.nextInt();
-        System.out.println("Set new product quantity:");
+        int idInput = getProductIdInput(statement);
+        System.out.print("Set new product quantity:");
         int newQuantity = sc.nextInt();
         String query = "UPDATE products SET quantity =" + newQuantity + " WHERE id =" + idInput;
         return statement.executeUpdate(query);
     }
 
     public static int changeProductNameWhereIdEqualsInput(Statement statement) throws SQLException {
-        System.out.println("Enter id");
-        int idInput = sc.nextInt();
-        System.out.println("Set new product name:");
-        String newName = sc.next();
-        String query = "UPDATE products SET name ='" + newName + "' WHERE id =" + idInput;
+        int idInput = getProductIdInput(statement);
+        System.out.print("Set new product name:");
+        sc.nextLine();
+        String newName = sc.nextLine();
+        String query = "UPDATE products SET product_name ='" + newName + "' WHERE id =" + idInput;
         return statement.executeUpdate(query);
     }
-
 
     public static Product searchProductsById(Statement statement, int id, int quantity) {
         ResultSet rs;
@@ -164,17 +166,17 @@ public class ProductActions {
         try {
             rs = statement.executeQuery(query);
             if (rs.next()) {
-                int product_quantity = rs.getInt(4);
-                if (product_quantity < quantity) {
+                int prodQuantity = rs.getInt(4);
+                if (prodQuantity < quantity) {
                     System.out.println("Not enough quantity!");
                 } else {
-                    int product_id = rs.getInt(1);
-                    String product_name = rs.getString(2);
+                    int prodId = rs.getInt(1);
+                    String prodName = rs.getString(2);
                     double price = rs.getDouble(3);
-                    String product_type = rs.getString(5);
+                    String prodType = rs.getString(5);
                     String color = rs.getString(6);
-                    String expiration_date = rs.getString(7);
-                    product = new Product(product_id, product_name, price, quantity, product_type, color, expiration_date);
+                    String expirationDate = rs.getString(7);
+                    product = new Product(prodId, prodName, price, quantity, prodType, color, expirationDate);
                 }
 
             }
@@ -195,8 +197,8 @@ public class ProductActions {
                 int quantity = rs.getInt(4);
                 String type = rs.getString(5);
                 String color = rs.getString(6);
-                String expiration_date = rs.getString(7);
-                Product item = new Product(id, name, price, quantity, type, color, expiration_date);
+                String expirationDate = rs.getString(7);
+                Product item = new Product(id, name, price, quantity, type, color, expirationDate);
                 productsList.add(item);
             }
 
@@ -205,5 +207,14 @@ public class ProductActions {
         }
     }
 
+    private static int getProductIdInput(Statement statement) {
+        int idInput;
+        do {
+            System.out.print("Enter product id: ");
+            checkInt(sc, "Input invalid id. Try again!");
+            idInput = sc.nextInt();
+        } while (!checkIdExists(statement, idInput));
+        return idInput;
+    }
 }
 

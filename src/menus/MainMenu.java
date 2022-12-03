@@ -13,9 +13,12 @@ public class MainMenu {
 
     public static void printChoices() {
 
-        System.out.println("Choose user type:");
-        System.out.println("1. Employee");
-        System.out.println("2. Client");
+        System.out.println("============= Main Menu ============= ");
+        System.out.println("[1] Employee");
+        System.out.println("[2] Customer");
+        System.out.println("[3] Exit");
+        System.out.println("===================================== ");
+        System.out.print("Your choice: ");
 
     }
 
@@ -36,12 +39,12 @@ public class MainMenu {
                         showCustomerMenu(sc, statement, customer);
                         System.exit(0);
                     }
+                    case 3 -> System.exit(0);
                     default -> System.out.println("Invalid choice! Try again!\n");
                 }
             } while (true);
-        }catch (Exception e){
-            System.out.println("Wrong input? Try again!");
-            java.awt.Toolkit.getDefaultToolkit().beep();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }
