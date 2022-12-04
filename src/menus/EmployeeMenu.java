@@ -86,36 +86,36 @@ public class EmployeeMenu {
                 }
 
                 case 6 -> {
-                    ArrayList<Product> products = checkProductsWhereIdIsEqualToInput(statement);
+                    ArrayList<Product> products = printProductsWhereIdIsEqualToInput(statement);
                     printProductArrayList(products);
 
                 }
                 case 7 -> {
-                    ArrayList<Product> products = checkProductWhereNameEqualsInput(statement);
+                    ArrayList<Product> products = printProductWhereNameEqualsInput(statement);
                     printProductArrayList(products);
 
                 }
                 case 8 -> {
-                    ArrayList<Product> products = sortProductByPriceHigherOrEqualToInput(statement);
+                    ArrayList<Product> products = printProductWithPriceHigherOrEqualToInput(statement);
                     printProductArrayList(products);
                     System.out.println("Product was sorted by Price higher than input at: " + showTime);
 
                 }
                 case 9 -> {
-                    ArrayList<Product> products = sortProductByPriceLowerOrEqualToInput(statement);
+                    ArrayList<Product> products = printProductWithPriceLowerOrEqualToInput(statement);
                     printProductArrayList(products);
                     System.out.println("Product was sorted by Price lower than input at: " + showTime);
 
                 }
 
                 case 10 -> {
-                    ArrayList<Product> products = sortProductByQuantityHigherOrEqualToInput(statement);
+                    ArrayList<Product> products = printProductWithQuantityHigherOrEqualToInput(statement);
                     printProductArrayList(products);
                     System.out.println("Product was sorted by Quantity higher than input at: " + showTime);
 
                 }
                 case 11 -> {
-                    ArrayList<Product> products = sortProductByQuantityLowerOrEqualToInput(statement);
+                    ArrayList<Product> products = printProductWithQuantityLowerOrEqualToInput(statement);
                     printProductArrayList(products);
                     System.out.println("Product was sorted by Quantity lower than input at: " + showTime);
 

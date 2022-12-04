@@ -35,8 +35,8 @@ public class ProductActions {
             System.out.print("Enter new product expiration date (dd-mm-yyyy): ");
             expirationDateInput = sc.nextLine();
         }
-        while (!formatString(expirationDateInput));
-        exDate = formattedDate(expirationDateInput);
+        while (!checkValidDate(expirationDateInput));
+        exDate = getFormattedDate(expirationDateInput);
         String query = "INSERT INTO products(product_name,price,quantity,product_type,product_color,expiration_date) VALUES ('" + nameInput + "'," + priceInput + "," + quantityInput + ",'" + typeInput + "','" + colorInput + "','" + exDate + "');";
         return statement.executeUpdate(query);
     }
@@ -63,7 +63,7 @@ public class ProductActions {
         return productsList;
     }
 
-    public static ArrayList<Product> sortProductByPriceHigherOrEqualToInput(Statement statement) {
+    public static ArrayList<Product> printProductWithPriceHigherOrEqualToInput(Statement statement) {
         System.out.print("Enter price: ");
         double input = sc.nextInt();
         ArrayList<Product> productsList = new ArrayList<>();
@@ -73,7 +73,7 @@ public class ProductActions {
         return productsList;
     }
 
-    public static ArrayList<Product> sortProductByPriceLowerOrEqualToInput(Statement statement) {
+    public static ArrayList<Product> printProductWithPriceLowerOrEqualToInput(Statement statement) {
         System.out.print("Enter price: ");
         double input = sc.nextInt();
         ArrayList<Product> productsList = new ArrayList<>();
@@ -83,7 +83,7 @@ public class ProductActions {
         return productsList;
     }
 
-    public static ArrayList<Product> sortProductByQuantityHigherOrEqualToInput(Statement statement) {
+    public static ArrayList<Product> printProductWithQuantityHigherOrEqualToInput(Statement statement) {
         System.out.print("Enter quantity: ");
         int input = sc.nextInt();
         ArrayList<Product> productsList = new ArrayList<>();
@@ -93,7 +93,7 @@ public class ProductActions {
         return productsList;
     }
 
-    public static ArrayList<Product> sortProductByQuantityLowerOrEqualToInput(Statement statement) {
+    public static ArrayList<Product> printProductWithQuantityLowerOrEqualToInput(Statement statement) {
         System.out.print("Enter quantity: ");
         int input = sc.nextInt();
         ArrayList<Product> productsList = new ArrayList<>();
@@ -103,7 +103,7 @@ public class ProductActions {
         return productsList;
     }
 
-    public static ArrayList<Product> checkProductsWhereIdIsEqualToInput(Statement statement) {
+    public static ArrayList<Product> printProductsWhereIdIsEqualToInput(Statement statement) {
         System.out.print("Enter id: ");
         int input = sc.nextInt();
         ArrayList<Product> productsList = new ArrayList<>();
@@ -113,7 +113,7 @@ public class ProductActions {
         return productsList;
     }
 
-    public static ArrayList<Product> checkProductWhereNameEqualsInput(Statement statement) {
+    public static ArrayList<Product> printProductWhereNameEqualsInput(Statement statement) {
         System.out.print("Enter product name: ");
         String input = sc.nextLine();
         ArrayList<Product> productsList = new ArrayList<>();

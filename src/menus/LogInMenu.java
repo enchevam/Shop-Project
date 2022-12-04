@@ -19,7 +19,7 @@ public class LogInMenu {
             do {
                 checkInt(sc, "Enter valid Employee id");
                 id = sc.nextInt();
-            } while (checkPositive(id) < 0);
+            } while (!checkPositive(id));
 
             sc.nextLine();
 

@@ -9,11 +9,11 @@ public class EmployeeActions {
 
     public static ArrayList<Employee> sortEmployees(Statement statement, String query){
         ArrayList<Employee> employeeList = new ArrayList<>();
-        addDataToEmployeeList(statement, employeeList, query);
+        getEmployeesFromDb(statement, employeeList, query);
         return employeeList;
     }
 
-    private static void addDataToEmployeeList(Statement statement, ArrayList<Employee> employeeList, String query) {
+    private static void getEmployeesFromDb(Statement statement, ArrayList<Employee> employeeList, String query) {
         ResultSet rs;
         try {
             rs = statement.executeQuery(query);
