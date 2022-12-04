@@ -1,7 +1,8 @@
 import customer.Customer;
 
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
-import java.sql.*;
 
 import static menus.MainMenu.showMainMenu;
 

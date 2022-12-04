@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -39,29 +38,30 @@ public class UtilMethods {
         }
     }
 
-    public static int checkPositive(int id) {
+    public static boolean checkPositive(int id) {
 
         if (id < 0) {
             System.out.println("Not a positive; Try again");
+            return false;
         }
-        return id;
+        return true;
     }
 
-    public static boolean formatString(String date){
+    public static boolean checkValidDate(String date) {
 
         boolean isValid;
 
         try {
-            formattedDate(date);
+            getFormattedDate(date);
             isValid = true;
-        }catch(DateTimeParseException e){
+        } catch (RuntimeException e) {
             isValid = false;
             System.out.println("Invalid date! Try again!");
         }
         return isValid;
     }
 
-    public static LocalDate formattedDate(String date){
+    public static LocalDate getFormattedDate(String date) {
 
         date = replaceDelimiter(date);
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -73,27 +73,27 @@ public class UtilMethods {
         return date.replaceAll("[./\\s]", "-");
     }
 
-   public static Type checkProduct(Scanner sc){
-       Type typeInput = null;
-       boolean isValid;
-       do {
-           try {
-               System.out.print("Enter new product type (food/drinks/sanitary/others): ");
-               typeInput = Type.valueOf(sc.nextLine().toUpperCase());
-               isValid = true;
-           } catch (IllegalArgumentException e) {
-               isValid = false;
-               System.out.println("Invalid type! Try again!");
-           }
-       } while (!isValid);
+    public static Type checkProduct(Scanner sc) {
+        Type typeInput = null;
+        boolean isValid;
+        do {
+            try {
+                System.out.print("Enter new product type (food/drinks/sanitary/others): ");
+                typeInput = Type.valueOf(sc.nextLine().toUpperCase());
+                isValid = true;
+            } catch (IllegalArgumentException e) {
+                isValid = false;
+                System.out.println("Invalid type! Try again!");
+            }
+        } while (!isValid);
 
-       return typeInput;
-   }
+        return typeInput;
+    }
 
-    public static boolean checkIdExists(Statement statement, int id){
+    public static boolean checkIdExists(Statement statement, int id) {
 
         ResultSet rs;
-       String query = "SELECT id FROM products WHERE id='" + id + "';";
+        String query = "SELECT id FROM products WHERE id='" + id + "';";
         try {
             rs = statement.executeQuery(query);
             if (!rs.next()) {
