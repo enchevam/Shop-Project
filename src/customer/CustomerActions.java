@@ -15,6 +15,7 @@ public class CustomerActions {
             System.out.print("Enter product quantity: ");
             checkInt(sc, "Enter valid data");
             int quantity = sc.nextInt();
+
             product = searchProductsById(statement, id, quantity);
         } while (product == null);
         customer.addToCart(product);

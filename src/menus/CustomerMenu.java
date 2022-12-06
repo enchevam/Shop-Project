@@ -12,8 +12,7 @@ import static customer.CustomerActions.buyProduct;
 import static menus.MainMenu.showMainMenu;
 import static products.ProductActions.printProducts;
 import static products.ProductActions.searchProducts;
-import static utility.Queries.QUERY_PRINT_PRODUCTS_BY_CUSTOMER;
-import static utility.Queries.QUERY_SEARCH_PRODUCTS;
+import static utility.Queries.*;
 import static utility.UtilMethods.*;
 
 public class CustomerMenu {
@@ -51,7 +50,7 @@ public class CustomerMenu {
                     sc.nextLine();
                     String type = sc.nextLine();
                     checkString(type, sc);
-                    String query = QUERY_SEARCH_PRODUCTS + type + "%'";
+                    String query = QUERY_SEARCH_PRODUCTS_BY_TYPE + type + "%'";
                     ArrayList<Product> products = searchProducts(statement, query);
                     printProductArrayList(products);
                 }
@@ -60,7 +59,7 @@ public class CustomerMenu {
                     sc.nextLine();
                     String name = sc.nextLine();
                     checkString(name, sc);
-                    String query = QUERY_SEARCH_PRODUCTS + name + "%'";
+                    String query = QUERY_SEARCH_PRODUCTS_BY_NAME + name + "%'";
                     ArrayList<Product> products = searchProducts(statement, query);
                     printProductArrayList(products);
                 }
